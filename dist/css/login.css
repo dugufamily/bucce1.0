@@ -1,0 +1,56 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background: url(/dist/./img/bc7a34f0956820e74821ea04d9893b23.jpg) no-repeat;
+    background-size: cover;
+    font-size: 16px;
+}
+
+.log_back {
+    background-color: rgba(256,256,256,0.7);
+    padding: 0;
+    width: 400px;
+    margin-top: 12%;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.log_back li {
+    width: 50%;
+}
+
+.log_back li a {
+    margin: 0px;
+    background: #f8f8f8;
+    color: #000000;
+}
+.log_back li:nth-child(1) a{
+    border-top-right-radius: 0px;
+}
+.log_back li:nth-child(2) a{
+    border-top-left-radius: 0px;
+}
+
+.tab-content {
+    padding: 38px;
+    padding-bottom: 20px;
+}
+.send_code{
+    padding-right: 102px;
+    position: relative;
+}
+.send_code button{
+    position: absolute;
+    right: 0;
+    top:0
+}
+
+.form-group{
+    margin-bottom: 18px;
+}
+.input-group span{
+    background: #ffffff;
+
+}
