@@ -212,3 +212,12 @@ body {
     font-size: 16px;
     color: #448cca;
 }
+#topinfo {
+    position: absolute;
+    right: 10px ;
+    top: 10px;
+    font-size: 14px;
+}
+.posre {
+    position: relative        
+}

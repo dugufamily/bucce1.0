@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 require("./../../css/common/common.css");
 require("./../../css/page/beecubic.css");
 require("./../../css/page/index.css")
+ 
 import vue from 'vue'
 new vue({
     el:"#pgHead",
@@ -13,7 +14,7 @@ new vue({
     el:"#pgFoot",
     render: h => h(Bottom)
 })
-
+ 
 $(document).ready(function () {
     $(".carousel-inner").height($(window).height() - 110);
     $(".green_body").height($(window).height() - 110);

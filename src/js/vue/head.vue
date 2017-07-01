@@ -1,6 +1,9 @@
 <template>
 <header class="navbar navbar-default navbar-fixed-top header-height">
-    <div class="container">
+    <div class="container posre">
+        <div id="topinfo" v-if="log">
+            <p>欢迎您：{{uname}},<a href="admin/info.html">进入后台</a> | <a href="javascript:;" @click="logout">退出</a> </p>
+        </div>
         <!--头部-->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -20,7 +23,7 @@
                 <li><a href="#">联系我们</a></li>
                 <li><a href="login.html">登录</a></li>
                 <li>
-                    <button type="button" class="btn btn-default navbar-btn" onClick="window.location.href='log.html'">注册</button>
+                    <button type="button" class="btn btn-default navbar-btn" onClick="window.location.href='login.html'">注册</button>
                 </li>
             </ul>
         </div>
@@ -28,7 +31,46 @@
 </header>
 </template>
 <script>
-    
+     
+    import {req as axio, getItem, getPsn,clearItem } from './../common/common.js'
+    let strName = getPsn("PSN_NAME");
+    export default {
+        data (){
+            return {
+                uname:strName==false?"":strName,
+                logoutobj:{
+                    "cno": 105,
+                    "appid": "ibooth",
+                    "uno":  getPsn("PSN_UNO"),
+                    "token": getPsn("PSN_NO")
+                },
+                log: strName==false?false:true
+            }
+        },
+        methods: {
+            logout(){
+                axio({
+                    cmd:this.logoutobj,
+                    success:function(res){
+                        console.log(res);
+                        var data = res.data;
+                        if(data.err==0){
+                            clearItem(); 
+                            window.location.href="index.html";
+                        }else{
+                            alert(data.error)
+                        }   
+                    },
+                    fail:function(error){
+
+                    }
+                })
+            }
+        },
+        components:{
+
+        }
+    }
 </script>
 <style>
     

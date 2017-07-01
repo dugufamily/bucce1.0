@@ -4,11 +4,12 @@ const glob = require('glob');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const node_dir = path.join(__dirname, './node_modules/'); 
-
+ 
 module.exports = {
     entry:{
         login: './src/js/page/login.js',
         index: './src/js/page/index.js',
+        email: './src/js/page/email.js',
         inforchange: './src/js/page/admin/inforchange.js',
         infor: './src/js/page/admin/infor.js',
         vendor: ['jquery','bootstrap','vue','store'] 
@@ -87,6 +88,18 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({ 
             //favicon: './src/img/favicon.ico', 
+            filename: './view/email.html', 
+            template: './src/view/email.html', 
+            inject: true, 
+            hash: true, 
+            // minify: { 
+            //     removeComments: true, 
+            //     collapseWhitespace: false 
+            // },    
+            chunks: ['public', 'email','vendor'] 
+        }),        
+        new HtmlWebpackPlugin({ 
+            //favicon: './src/img/favicon.ico', 
             filename: './view/admin/inforChange.html', 
             template: './src/view/admin/inforChange.html', 
             inject: true, 
@@ -107,7 +120,7 @@ module.exports = {
             //     removeComments: true, 
             //     collapseWhitespace: false 
             // },    
-            chunks: ['public', 'info','vendor'] 
+            chunks: ['public', 'infor','vendor'] 
         })                            
     ],
     resolve: {

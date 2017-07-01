@@ -1,10 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
 //require("./../../css/page/login.css");
 import "./../../css/page/login.css";
-import {req as axio,setItem,clearItem,timeInteval } from './../common/common.js'
+import {req as axio,setItem,clearItem,timeInteval,tip } from './../common/common.js'
 import vue from 'vue';
-
-
+ 
 var logVm = new vue({
     el:"#loginApp",
     data:{
@@ -28,18 +27,24 @@ var logVm = new vue({
             "appid": "ibooth",
             "uname":  "",
             "pwd":  ""
-        }        
+        }    
     },
     methods:{
         fnlog:function(){
             axio({
                 cmd:this.log,
-                success:function(data){
-                    console.log(data);
-
+                success:function(res){
+                    var data = res.data;
+                    if(data.err==0){
+                        clearItem();
+                        setItem("PGINFO",{"PSN_NAME": data.uname, "PSN_NO": data.token, "PSN_UNO": data.uno, "PSN_USTATE":data.ustate,"PSN_UMAILVFLAG": data.umailvflg }) 
+                        window.location.href="index.html";
+                    }else{
+                        alert(data.error)
+                    }                    
                 },
                 fail:function(error){
-                    console.log(error)
+                   alert(error)
                 }
             })
         },
@@ -49,14 +54,20 @@ var logVm = new vue({
             
             axio({
                 cmd:this.reg,
-                success:function(data){
-                    console.log(data);
-
+                success:function(res){
+                    var data = res.data;
+                    if(data.err==0){
+                        clearItem();
+                        setItem("PGINFO",{"PSN_NAME": data.uname, "PSN_NO": data.token, "PSN_UNO": data.uno, "PSN_USTATE":data.ustate,"PSN_UMAILVFLAG": data.umailvflg });
+                        window.location.href="email.html";
+                    }else{
+                        alert(data.error)
+                    }  
                 },
                 fail:function(error){
-                    console.log(error)
+                    alert(error)
                 }
-            })
+            }) 
         },
         fnchkcode:function(){
             var vm = this,
@@ -66,10 +77,15 @@ var logVm = new vue({
             this.sendcode.phone = $tel   
             axio({
                 cmd:this.sendcode,
-                success:function(data){
- 
-                    vm.reg.verycode = data.vuerycode;
-                    alert(data.vuerycode)
+                success:function(res){
+                    var data = res.data;
+                    if(data.err == 0) {
+                        vm.reg.verycode = data.vuerycode;
+                        alert('验证码是测试用，用警告框模拟手机查看验证码：'+data.verycode)
+                    }else{
+                        alert(data.error)
+                    }
+                    
                 },
                 fail:function(error){
                     console.log(error)
@@ -78,22 +94,3 @@ var logVm = new vue({
         }
     }
 })
-
-
-// ajx({
-//     data:{
-// "cno": 101,
-// "appid": "ibooth",
-// "uno":  0,
-// "phone": "15275209312",
-// "vertype": 1
-
-//     },
-//     sucfn:function(){
-
-//     },
-//     errfn:function(error){
-//         console.log(error)
-//     }
-// })
-
