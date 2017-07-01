@@ -2,7 +2,7 @@
 <header class="navbar navbar-default navbar-fixed-top header-height">
     <div class="container posre">
         <div id="topinfo" v-if="log">
-            <p>欢迎您：{{uname}},<a href="admin/info.html">进入后台</a> | <a href="javascript:;" @click="logout">退出</a> </p>
+            <p>欢迎您：{{uname}},<a href="admin/infor.html">进入后台</a> | <a href="javascript:;" @click="logout">退出</a> </p>
         </div>
         <!--头部-->
         <div class="navbar-header">
@@ -12,7 +12,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="../../view/index.html">
                 <img alt="BEECUBIC" src="./../../img/logo.png" class="img-responsive">
             </a>
         </div>
@@ -21,8 +21,8 @@
                 <li><a href="#">解决方案</a></li>
                 <li><a href="#">关于我们</a></li>
                 <li><a href="#">联系我们</a></li>
-                <li><a href="login.html">登录</a></li>
-                <li>
+                <li v-if="!log"><a href="login.html">登录</a></li>
+                <li v-if="!log">
                     <button type="button" class="btn btn-default navbar-btn" onClick="window.location.href='login.html'">注册</button>
                 </li>
             </ul>
@@ -34,6 +34,7 @@
      
     import {req as axio, getItem, getPsn,clearItem } from './../common/common.js'
     let strName = getPsn("PSN_NAME");
+    
     export default {
         data (){
             return {
@@ -56,7 +57,7 @@
                         var data = res.data;
                         if(data.err==0){
                             clearItem(); 
-                            window.location.href="index.html";
+                            window.location.href="./../../view/index.html";
                         }else{
                             alert(data.error)
                         }   

@@ -1,9 +1,4 @@
-webpackJsonp([1],{
-
-/***/ 55:
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_LOCAL_MODULE_0__;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+/*!
  * Distpicker v1.0.4
  * https://github.com/fengyuanchen/distpicker
  *
@@ -14,11 +9,9 @@ webpackJsonp([1],{
  */
 
 (function (factory) {
-  if (true) {
+  if (typeof define === 'function' && define.amd) {
     // AMD. Register as anonymous module.
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_LOCAL_MODULE_0__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__));
+    define('ChineseDistricts', [], factory);
   } else {
     // Browser globals.
     factory();
@@ -4032,7 +4025,10 @@ webpackJsonp([1],{
   }
 
   return ChineseDistricts;
+
 });
+
+
 
 /*!
  * Distpicker v1.0.4
@@ -4045,12 +4041,9 @@ webpackJsonp([1],{
  */
 
 (function (factory) {
-  if (true) {
+  if (typeof define === 'function' && define.amd) {
     // AMD. Register as anonymous module.
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(0), __WEBPACK_LOCAL_MODULE_0__], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    define(['jquery', 'ChineseDistricts'], factory);
   } else if (typeof exports === 'object') {
     // Node / CommonJS
     factory(require('jquery'), require('ChineseDistricts'));
@@ -4112,16 +4105,16 @@ webpackJsonp([1],{
 
     bind: function () {
       if (this.$province) {
-        this.$province.on(EVENT_CHANGE, this._changeProvince = $.proxy(function () {
+        this.$province.on(EVENT_CHANGE, (this._changeProvince = $.proxy(function () {
           this.output(CIRY);
           this.output(DISTRICT);
-        }, this));
+        }, this)));
       }
 
       if (this.$city) {
-        this.$city.on(EVENT_CHANGE, this._changeCity = $.proxy(function () {
+        this.$city.on(EVENT_CHANGE, (this._changeCity = $.proxy(function () {
           this.output(DISTRICT);
-        }, this));
+        }, this)));
       }
     },
 
@@ -4151,7 +4144,11 @@ webpackJsonp([1],{
 
       value = options[type];
 
-      code = type === PROVINCE ? 86 : type === CIRY ? this.$province && this.$province.find(':selected').data('code') : type === DISTRICT ? this.$city && this.$city.find(':selected').data('code') : code;
+      code = (
+        type === PROVINCE ? 86 :
+        type === CIRY ? this.$province && this.$province.find(':selected').data('code') :
+        type === DISTRICT ? this.$city && this.$city.find(':selected').data('code') : code
+      );
 
       districts = $.isNumeric(code) ? ChineseDistricts[code] : null;
 
@@ -4198,7 +4195,15 @@ webpackJsonp([1],{
       var list = [];
 
       $.each(data, function (i, n) {
-        list.push('<option' + ' value="' + (n.address && n.code ? n.address : '') + '"' + ' data-code="' + (n.code || '') + '"' + (n.selected ? ' selected' : '') + '>' + (n.address || '') + '</option>');
+        list.push(
+          '<option' +
+          ' value="' + (n.address && n.code ? n.address : '') + '"' +
+          ' data-code="' + (n.code || '') + '"' +
+          (n.selected ? ' selected' : '') +
+          '>' +
+            (n.address || '') +
+          '</option>'
+        );
       });
 
       return list.join('');
@@ -4251,7 +4256,7 @@ webpackJsonp([1],{
         }
 
         options = $.extend({}, $this.data(), $.isPlainObject(option) && option);
-        $this.data(NAMESPACE, data = new Distpicker(this, options));
+        $this.data(NAMESPACE, (data = new Distpicker(this, options)));
       }
 
       if (typeof option === 'string' && $.isFunction(fn = data[option])) {
@@ -4274,156 +4279,13 @@ webpackJsonp([1],{
   });
 });
 
+
+
 $(function () {
 
   'use strict';
-
   $('#distpicker').distpicker({
     autoSelect: false
   });
+
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 60:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_head_vue__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_bottom_vue__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_dist_css_bootstrap_css__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_dist_css_bootstrap_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap_dist_css_bootstrap_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_common_js__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue__);
-
-
-
-__webpack_require__(9);
-__webpack_require__(10);
-__webpack_require__(11);
-__webpack_require__(55);
-
-
-
-new __WEBPACK_IMPORTED_MODULE_4_vue___default.a({
-    el: "#pgHead",
-    render: h => h(__WEBPACK_IMPORTED_MODULE_0__vue_head_vue__["a" /* default */])
-});
-new __WEBPACK_IMPORTED_MODULE_4_vue___default.a({
-    el: "#pgFoot",
-    render: h => h(__WEBPACK_IMPORTED_MODULE_1__vue_bottom_vue__["a" /* default */])
-});
-
-var postVm = new __WEBPACK_IMPORTED_MODULE_4_vue___default.a({
-    el: "#postPerInfor",
-    data: {
-        isClick: 0,
-        umailvflg: "",
-        ustate: "",
-        getPerInfor: {
-            "cno": 111,
-            "appid": "ibooth",
-            "uno": 97,
-            "token": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_NO")
-        },
-        postEmail: {
-            "cno": 108,
-            "appid": "ibooth",
-            "uno": 97,
-            "token": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_NO"),
-            "email": ""
-        },
-        postPerInfor: {
-            "cno": 112,
-            "appid": "ibooth",
-            "uno": 97,
-            "token": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_NO"),
-            "company": "",
-            "usccode": "",
-            "province": "",
-            "city": "",
-            "district": "",
-            "address": "",
-            "email": "",
-            "phone": "",
-            "telphone": ""
-        }
-    },
-    mounted: function () {
-        var vm = this;
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["b" /* req */])({
-            cmd: vm.getPerInfor,
-            success: function (res) {
-                var data = res.data;
-                if (data.err == 0) {
-                    vm.postPerInfor.company = data.company;
-                    vm.postPerInfor.usccode = data.usccode;
-                    vm.postPerInfor.province = data.province;
-                    vm.postPerInfor.city = data.city;
-                    vm.postPerInfor.district = data.district;
-                    vm.postPerInfor.address = data.address;
-                    vm.postPerInfor.email = data.email;
-                    vm.postPerInfor.phone = data.phone;
-                    vm.postPerInfor.telphone = data.telphone;
-                    vm.umailvflg = data.umailvflg;
-                    vm.ustate = data.ustate;
-                } else {
-                    alert(data.error);
-                }
-            },
-            fail: function (error) {
-                console.log(error);
-            }
-        });
-    },
-    methods: {
-        fnpostEmail: function () {
-            var vm = this;
-            vm.postEmail.email = vm.postPerInfor.email;
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["b" /* req */])({
-                cmd: vm.postEmail,
-                success: function (res) {
-                    var data = res.data;
-                    if (data.err == 0) {
-                        vm.umailvflg = 2;
-                    } else {
-                        console.log(res);
-                    }
-                },
-                fail: function (error) {
-                    console.log(error);
-                }
-            });
-        },
-        fnpostPerInfor: function () {
-            var vm = this;
-            for (var i = 0; i < vm.postPerInfor.length; i++) {
-                if (vm.postPerInfor[i] == "") {
-                    vm.isClick = 2;
-                    return false;
-                }
-            }
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["b" /* req */])({
-                cmd: vm.postPerInfor,
-                success: function (res) {
-                    var data = res.data;
-                    if (data.err == 0) {
-                        vm.isClick = 1;
-                    } else {
-                        console.log(data.error);
-                    }
-                },
-                fail: function (error) {
-                    console.log(error);
-                }
-            });
-        }
-    }
-});
-
-/***/ })
-
-},[60]);

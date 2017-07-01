@@ -1,13 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>首页</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>公司信息</title>
 </head>
 <body>
 <div id="pgHead"></div>
+<main class="content">
+    <!--面包屑导航-->
+    <nav class="navbar navbar-default nav-height">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3 col-md-2">
+                    <h3 class="text-right nav-title">账户中心</h3>
+                </div>
+                <div class="col-xs-9 col-md-10">
+                    <ol class="breadcrumb">
+                        <li>Home</li>
+                        <li>注册资料</li>
+                        <li>公司信息</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <!--边栏-->
+            <div class="col-xs-3 col-md-2 text-right side_left">
+                <dl>
+                    <dt><i class="side_ico ico_log"></i>注册资料</dt>
+                    <dd><a href="infor.html" class="active">公司信息</a></dd>
+                    <dd><a href="inforChange.html">信息修改</a></dd>
+                </dl>
+                <dl>
+                    <dt><i class="side_ico ico_count"></i>资金账户</dt>
+                    <dd><a href="recharge.html">充值记录</a></dd>
+                    <dd><a href="#">账户充值</a></dd>
+                </dl>
+                <dl>
+                    <dt><i class="side_ico ico_record"></i>交易记录</dt>
+                    <dd><a href="#">订单管理</a></dd>
+                </dl>
+                <dl>
+                    <dt><i class="side_ico ico_fav"></i>方案收藏</dt>
+                    <dd><a href="collect.html">收藏管理</a></dd>
+                </dl>
+                <dl>
+                    <dt><i class="side_ico ico_mes"></i>站内消息</dt>
+                    <dd><a href="unmessage.html">未读消息</a></dd>
+                    <dd><a href="#">全部消息</a></dd>
+                    <dd><a href="#">已读消息</a></dd>
+                    <dd><a href="#">我的留言</a></dd>
+                </dl>
+            </div>
+            <div class="col-xs-9 col-md-10">
+                <div class="side_right">
+                    <h4 class="side_right_title">信息修改</h4>
+                    <form id="getPerInfor" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><i class="infor_ico infor_user"></i>用户名称</label>
+                            <label class="infor">{{ backPerInfor.uname }}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><i class="infor_ico infor_company"></i>公司名称</label>
+                            <label class="infor">{{ backPerInfor.company }}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><i class="infor_ico infor_code"></i>信用代码</label>
+                            <label class="infor">{{ backPerInfor.usccode }}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><i class="infor_ico infor_address"></i>公司地址</label>
+                            <label class="infor">{{ backPerInfor.province }} {{ backPerInfor.city }} {{ backPerInfor.district }}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <label class="infor">{{ backPerInfor.address }}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><i class="infor_ico infor_email"></i>注册邮箱</label>
+                            <label class="infor">{{ backPerInfor.email }}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><i class="infor_ico infor_call"></i>移动电话</label>
+                            <label class="infor">{{ backPerInfor.phone }}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><i class="infor_ico infor_tele"></i>公司电话</label>
+                            <label class="infor">{{ backPerInfor.telphone }}</label>
+                        </div>
+                        <div class="form-group">
+                            <template v-if= "backPerInfor.umailvflg == 2" >
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-7">
+                                <div class="alert alert-success text-center" role="alert">
+                                    您提供的公司资料已经通过审核，感谢您使用BEECUBIC!
+                                </div>
+                            </div>
+                            </template>
+                            <template v-else>
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-7">
+                                <div class="alert alert-danger text-center" role="alert">
+                                    对不起，信息还没通过审核，请对您进口对<a href="inforChange.html" class="alert-link">信息进行修改</a>。
+                                </div>
+                            </div>
+                            </template>       
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 <div id="pgFoot"></div>
+<style>
+        @media (min-width: 992px){
+            .form-horizontal .control-label {
+                text-align: left;
+                padding-top: 0px;
+                padding-left: 40px;
+            }
+            .alert{
+                margin-top: 40px;
+            }
+        }
+    </style>
 </body>
 </html>
