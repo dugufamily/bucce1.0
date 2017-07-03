@@ -30,5 +30,8 @@
     "vue-template-compiler": "^2.3.4",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.5.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0"
   }
 }

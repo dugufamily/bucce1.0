@@ -1,23 +1,23 @@
 webpackJsonp([3],{
 
-/***/ 59:
+/***/ 172:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_head_vue__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_bottom_vue__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_dist_css_bootstrap_css__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_head_vue__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_bottom_vue__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_dist_css_bootstrap_css__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_dist_css_bootstrap_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap_dist_css_bootstrap_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_common_js__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_common_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue__);
 
 
 
-__webpack_require__(9);
-__webpack_require__(10);
-__webpack_require__(11);
+__webpack_require__(54);
+__webpack_require__(55);
+__webpack_require__(56);
 
 
 
@@ -36,7 +36,7 @@ var getVm = new __WEBPACK_IMPORTED_MODULE_4_vue___default.a({
         getPerInfor: {
             "cno": 111,
             "appid": "ibooth",
-            "uno": 97,
+            "uno": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_UNO"),
             "token": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_NO")
         },
         backPerInfor: {
@@ -50,7 +50,8 @@ var getVm = new __WEBPACK_IMPORTED_MODULE_4_vue___default.a({
             "email": "",
             "phone": "",
             "telphone": "",
-            "umailvflg": ""
+            "umailvflg": "",
+            "ustate": ""
         }
     },
     mounted: function () {
@@ -70,6 +71,7 @@ var getVm = new __WEBPACK_IMPORTED_MODULE_4_vue___default.a({
                 vm.backPerInfor.phone = data.phone;
                 vm.backPerInfor.telphone = data.telphone;
                 vm.backPerInfor.umailvflg = data.umailvflg;
+                vm.backPerInfor.ustate = data.ustate;
             },
             fail: function (error) {
                 console.log(error);
@@ -81,4 +83,4 @@ var getVm = new __WEBPACK_IMPORTED_MODULE_4_vue___default.a({
 
 /***/ })
 
-},[59]);
+},[172]);

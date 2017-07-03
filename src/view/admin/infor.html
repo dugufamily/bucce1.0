@@ -93,7 +93,7 @@
                             <label class="infor">{{ backPerInfor.telphone }}</label>
                         </div>
                         <div class="form-group">
-                            <template v-if= "backPerInfor.umailvflg == 2" >
+                            <template v-if= "backPerInfor.ustate == 4" >
                             <label class="col-md-3 control-label"></label>
                             <div class="col-md-7">
                                 <div class="alert alert-success text-center" role="alert">
@@ -105,7 +105,7 @@
                             <label class="col-md-3 control-label"></label>
                             <div class="col-md-7">
                                 <div class="alert alert-danger text-center" role="alert">
-                                    对不起，信息还没通过审核，请对您进口对<a href="inforChange.html" class="alert-link">信息进行修改</a>。
+                                    对不起，信息还没通过审核，请对您尽快对<a href="inforChange.html" class="alert-link">信息进行修改</a>。
                                 </div>
                             </div>
                             </template>       

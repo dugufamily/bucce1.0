@@ -37,7 +37,8 @@ var getVm = new vue({
             "email": "",
             "phone": "",
             "telphone": "",
-            "umailvflg":""
+            "umailvflg":"",
+            "ustate":""
         }
     },
     mounted: function () {
@@ -57,6 +58,7 @@ var getVm = new vue({
                 vm.backPerInfor.phone = data.phone;
                 vm.backPerInfor.telphone = data.telphone;
                 vm.backPerInfor.umailvflg=data.umailvflg;
+                vm.backPerInfor.ustate=data.ustate;
             },
             fail: function (error) {
                 console.log(error)

@@ -41,11 +41,11 @@
                     </dl>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-3">
-                    <img src="img/footer_logo.png" alt="footer_logo" class="img-responsive">
+                    <img src="../../img/footer_logo.png" alt="footer_logo" class="img-responsive">
                     <div class="footer-attention">
                         <h5>关注我们</h5>
-                        <a href="#"><img src="img/footer_weixin.png" alt="weixin"></a>
-                        <a href="#"><img src="img/footer_weibo.png" alt="weibo"></a>
+                        <a href="#"><img src="../../img/footer_weixin.png" alt="weixin"></a>
+                        <a href="#"><img src="../../img/footer_weibo.png" alt="weibo"></a>
                     </div>
                 </div>
             </div>

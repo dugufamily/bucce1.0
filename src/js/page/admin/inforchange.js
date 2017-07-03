@@ -92,7 +92,7 @@ var postVm = new vue({
                     if (data.err == 0) {
                         vm.umailvflg=2;
                     } else {
-                        console.log(res)
+                        alert(data.error)
                     }
                 },
                 fail: function (error) {
@@ -102,12 +102,12 @@ var postVm = new vue({
         },
         fnpostPerInfor: function () {
             var vm = this;
-            for(var i=0;i<vm.postPerInfor.length;i++){
-                if(vm.postPerInfor[i] == ""){
-                    vm.isClick = 2;
-                    return false;
-                }
-            }
+            // for(var i=0;i<vm.postPerInfor.length;i++){
+            //     if(vm.postPerInfor[i] == ""){
+            //         vm.isClick = 2;
+            //         return false;
+            //     }
+            // }
             axio({
                 cmd: vm.postPerInfor,
                 success: function (res) {
@@ -115,7 +115,7 @@ var postVm = new vue({
                     if (data.err == 0) {
                         vm.isClick = 1;
                     } else {
-                        console.log(data.error)
+                        alert(data.error)
                     }
                 },
                 fail: function (error) {

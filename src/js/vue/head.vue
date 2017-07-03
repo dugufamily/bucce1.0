@@ -31,7 +31,8 @@
 </header>
 </template>
 <script>
-     
+    
+    require('babel-polyfill');
     import {req as axio, getItem, getPsn,clearItem } from './../common/common.js'
     let strName = getPsn("PSN_NAME");
     
