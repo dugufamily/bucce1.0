@@ -1,6 +1,6 @@
-webpackJsonp([5],{
+webpackJsonp([4],{
 
-/***/ 173:
+/***/ 175:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30,56 +30,68 @@ new __WEBPACK_IMPORTED_MODULE_4_vue___default.a({
 });
 
 var getVm = new __WEBPACK_IMPORTED_MODULE_4_vue___default.a({
-    el: "#getPerInfor",
+    el: "#mymessage",
     data: {
-        getPerInfor: {
-            "cno": 111,
+        notelist: "",
+        getMessage: {
+            "cno": 303,
             "appid": "ibooth",
             "uno": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_UNO"),
             "token": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_NO")
         },
-        backPerInfor: {
-            "uname": "",
-            "company": "",
-            "usccode": "",
-            "province": "",
-            "city": "",
-            "district": "",
-            "address": "",
-            "email": "",
-            "phone": "",
-            "telphone": "",
-            "umailvflg": "",
-            "ustate": ""
+        postMessage: {
+            "cno": 304,
+            "appid": "ibooth",
+            "uno": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_UNO"),
+            "token": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_NO"),
+            "note": ""
         }
     },
     mounted: function () {
         var vm = this;
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["b" /* req */])({
-            cmd: vm.getPerInfor,
+            cmd: vm.getMessage,
             success: function (res) {
                 var data = res.data;
-                vm.backPerInfor.uname = data.uname;
-                vm.backPerInfor.company = data.company;
-                vm.backPerInfor.usccode = data.usccode;
-                vm.backPerInfor.province = data.province;
-                vm.backPerInfor.city = data.city;
-                vm.backPerInfor.district = data.district;
-                vm.backPerInfor.address = data.address;
-                vm.backPerInfor.email = data.email;
-                vm.backPerInfor.phone = data.phone;
-                vm.backPerInfor.telphone = data.telphone;
-                vm.backPerInfor.umailvflg = data.umailvflg;
-                vm.backPerInfor.ustate = data.ustate;
+                vm.notelist = data.notelist;
+                console.log(vm.smslist[0]);
             },
             fail: function (error) {
                 console.log(error);
             }
         });
     },
-    methods: {}
+    methods: {
+        fnpostMessage: function () {
+            var vm = this;
+            if (vm.postMessage.note == "") {
+                alert("请输入您的留言");
+                return false;
+            }
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["b" /* req */])({
+                cmd: vm.postMessage,
+                success: function (res) {
+                    var data = res.data;
+                    if (data.err == 0) {
+                        alert("感谢您的留言，我们会尽快给您答复！");
+                        window.location.reload();
+                    } else {
+                        alert(data.error);
+                    }
+                },
+                fail: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+    },
+    filters: {
+        trim: function (value) {
+            return value.trim();
+        }
+    }
 });
 
 /***/ })
 
-},[173]);
+},[175]);

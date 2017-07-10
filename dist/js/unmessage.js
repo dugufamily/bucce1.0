@@ -1,6 +1,6 @@
-webpackJsonp([5],{
+webpackJsonp([3],{
 
-/***/ 173:
+/***/ 176:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30,56 +30,60 @@ new __WEBPACK_IMPORTED_MODULE_4_vue___default.a({
 });
 
 var getVm = new __WEBPACK_IMPORTED_MODULE_4_vue___default.a({
-    el: "#getPerInfor",
+    el: "#messageCenter",
     data: {
-        getPerInfor: {
-            "cno": 111,
+        smslist: "",
+        getMessage: {
+            "cno": 301,
             "appid": "ibooth",
             "uno": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_UNO"),
             "token": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_NO")
         },
-        backPerInfor: {
-            "uname": "",
-            "company": "",
-            "usccode": "",
-            "province": "",
-            "city": "",
-            "district": "",
-            "address": "",
-            "email": "",
-            "phone": "",
-            "telphone": "",
-            "umailvflg": "",
-            "ustate": ""
+        readMessage: {
+            "cno": 302,
+            "appid": "ibooth",
+            "uno": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_UNO"),
+            "token": __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["a" /* getPsn */])("PSN_NO"),
+            "smsno": "",
+            "upstatus": 2
         }
     },
     mounted: function () {
         var vm = this;
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["b" /* req */])({
-            cmd: vm.getPerInfor,
+            cmd: vm.getMessage,
             success: function (res) {
                 var data = res.data;
-                vm.backPerInfor.uname = data.uname;
-                vm.backPerInfor.company = data.company;
-                vm.backPerInfor.usccode = data.usccode;
-                vm.backPerInfor.province = data.province;
-                vm.backPerInfor.city = data.city;
-                vm.backPerInfor.district = data.district;
-                vm.backPerInfor.address = data.address;
-                vm.backPerInfor.email = data.email;
-                vm.backPerInfor.phone = data.phone;
-                vm.backPerInfor.telphone = data.telphone;
-                vm.backPerInfor.umailvflg = data.umailvflg;
-                vm.backPerInfor.ustate = data.ustate;
+                vm.smslist = data.smslist;
+                console.log(vm.smslist[0]);
             },
             fail: function (error) {
                 console.log(error);
             }
         });
     },
-    methods: {}
+    methods: {
+        fnreadMessage: function (no, index) {
+            var vm = this;
+            vm.readMessage.smsno = no;
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__common_common_js__["b" /* req */])({
+                cmd: vm.readMessage,
+                success: function (res) {
+                    var data = res.data;
+                    if (data.err == 0) {
+                        vm.smslist[index].status = 2;
+                    } else {
+                        alert(data.error);
+                    }
+                },
+                fail: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+    }
 });
 
 /***/ })
 
-},[173]);
+},[176]);

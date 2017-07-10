@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import "./../../css/page/login.css";
-import {req as axio, getItem, getPsn} from './../common/common.js'
+import {req as axio, getPsn} from './../common/common.js'
 import vue from 'vue';
  
 var logVm = new vue({

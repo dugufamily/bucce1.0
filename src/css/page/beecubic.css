@@ -1,6 +1,7 @@
 /*信息表格*/
 .table {
     border: 1px solid #e5e9ee;
+    margin-bottom: 0px;
 }
 
 .table > thead > tr > th {
@@ -21,10 +22,11 @@
     text-decoration: none;
 }
 
-.table label {
-    margin-bottom: 0px;
+.messageNote{
+    color:#2a2d2e;
+    margin-bottom:6px;
+    margin-top: 6px;
 }
-
 /*信息修改*/
 .form-horizontal .infor {
     line-height: 34px;
@@ -381,6 +383,36 @@ tbody:hover .order-del {
 
 }
 .p-price span{
+    display: inline-block;
+    margin-bottom: 2px;
+}
+
+.mymessagemy , .mymessageanswer{
+    overflow: hidden;
+}
+.mymessagemy img,.mymessageanswer img{
+    width: 50px;
+    height: 50px;
+    vertical-align:top;
+}
+.mymessagemy img{
+    float: left;
+}
+
+.mymessageanswer img{
+    float: right;
+}
+.mymessagemy p,.mymessageanswer p{
+    margin-left: 60px;
+    margin-right: 60px;
+    min-height: 50px;
+    background: #eeeeee;
+    padding: 2px 6px;
+    margin-bottom: 14px;
+}
+.mymessagemy p span,.mymessageanswer p span{
+    color:#aaaaaa;
+    font-size: 12px;
     display: inline-block;
     margin-bottom: 2px;
 }

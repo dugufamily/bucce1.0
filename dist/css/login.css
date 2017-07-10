@@ -54,3 +54,18 @@ body {
     background: #ffffff;
 
 }
+.forgetPass,.forgetPass:hover,.forgetPass:focus {
+    margin-bottom: 10px;
+    color: #666666;
+}
+
+.log_top{
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+#password {
+    background: url(/dist/./img/4d5aaf13c24796d7a18b51f4498fa763.jpg) no-repeat;
+    background-size: cover;
+    font-size: 16px;
+}

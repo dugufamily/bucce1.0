@@ -3,9 +3,8 @@ import Bottom from './../../vue/bottom.vue'
 import 'bootstrap/dist/css/bootstrap.css';
 require("./../../../css/common/common.css");
 require("./../../../css/page/beecubic.css");
-require("./../../../css/page/index.css");
 
-import { req as axio, getItem, getPsn } from './../../common/common.js'
+import { req as axio, getPsn } from './../../common/common.js'
 import vue from 'vue'
 new vue({
     el: "#pgHead",

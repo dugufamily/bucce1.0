@@ -1,16 +1,16 @@
-webpackJsonp([0],{
+webpackJsonp([1],{
 
-/***/ 176:
+/***/ 179:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_dist_css_bootstrap_css__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_dist_css_bootstrap_css__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_dist_css_bootstrap_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_bootstrap_dist_css_bootstrap_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_page_login_css__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_page_login_css__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_page_login_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_page_login_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_common_js__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_common_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue__);
 
 //require("./../../css/page/login.css");
@@ -63,9 +63,20 @@ var logVm = new __WEBPACK_IMPORTED_MODULE_3_vue___default.a({
             });
         },
         fnreg: function () {
-            var vm = this,
-                regex = /^0?1[3|4|5|8|7][0-9]\d{8}$/;
-
+            var vm = this;
+            if (vm.reg.uname == "") {
+                alert("用户名不能为空");
+                return false;
+            }
+            if (vm.reg.pwd == "") {
+                alert("密码不能为空");
+                return false;
+            }
+            if (vm.reg.verycode == "") {
+                alert("请输入正确验证码");
+                return false;
+            }
+            vm.reg.phone = vm.sendcode.phone;
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__common_common_js__["b" /* req */])({
                 cmd: this.reg,
                 success: function (res) {
@@ -85,16 +96,17 @@ var logVm = new __WEBPACK_IMPORTED_MODULE_3_vue___default.a({
         },
         fnchkcode: function () {
             var vm = this,
-                reg = /^0?1[3|4|5|8|7][0-9]\d{8}$/;
-            var $tel = $(this.$refs["regphone"]).val();
-            console.log(this.reg.phone);
-            this.sendcode.phone = $tel;
+                regex = /^1[34578]\d{9}$/,
+                phone = vm.sendcode.phone;
+            if (!regex.test(phone)) {
+                alert("请填写正确手机号");
+                return false;
+            }
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__common_common_js__["b" /* req */])({
                 cmd: this.sendcode,
                 success: function (res) {
                     var data = res.data;
                     if (data.err == 0) {
-                        vm.reg.verycode = data.vuerycode;
                         alert('验证码是测试用，用警告框模拟手机查看验证码：' + data.verycode);
                     } else {
                         alert(data.error);
@@ -107,15 +119,14 @@ var logVm = new __WEBPACK_IMPORTED_MODULE_3_vue___default.a({
         }
     }
 });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5)))
 
 /***/ }),
 
-/***/ 78:
+/***/ 50:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[176]);
+},[179]);

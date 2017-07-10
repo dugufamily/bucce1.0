@@ -3,11 +3,11 @@ import Bottom from './../../vue/bottom.vue'
 import 'bootstrap/dist/css/bootstrap.css';
 require("./../../../css/common/common.css");
 require("./../../../css/page/beecubic.css");
-require("./../../../css/page/index.css");
-require("./../../lib/distpicker.data")
 
-import { req as axio, getItem, getPsn  } from './../../common/common.js'
+import { req as axio, getPsn } from './../../common/common.js'
 import vue from 'vue'
+import vueForm from 'vue-form';
+
 new vue({
     el: "#pgHead",
     render: h => h(Header)
@@ -17,31 +17,37 @@ new vue({
     render: h => h(Bottom)
 })
 
+vue.use(vueForm, {
+    inputClasses: {
+        valid: 'form-control-success',
+        invalid: 'form-control-danger'
+    }
+});
 
 var postVm = new vue({
     el: "#postPerInfor",
     data: {
-        isClick: 0,
         umailvflg: "",
         ustate: "",
+        formstate: {},
         getPerInfor: {
             "cno": 111,
             "appid": "ibooth",
-            "uno":  getPsn("PSN_UNO"),
+            "uno": getPsn("PSN_UNO"),
             "token": getPsn("PSN_NO"),
         },
         postEmail: {
             "cno": 108,
             "appid": "ibooth",
-            "uno":  getPsn("PSN_UNO"),
+            "uno": getPsn("PSN_UNO"),
             "token": getPsn("PSN_NO"),
             "email": ""
         },
         postPerInfor: {
             "cno": 112,
             "appid": "ibooth",
-            "uno":  getPsn("PSN_UNO"),
-            "token":  getPsn("PSN_NO"),
+            "uno": getPsn("PSN_UNO"),
+            "token": getPsn("PSN_NO"),
             "company": "",
             "usccode": "",
             "province": "",
@@ -82,15 +88,36 @@ var postVm = new vue({
         })
     },
     methods: {
+        fieldClassName: function (field) {
+            if (!field) {
+                return '';
+            }
+            if ((field.$touched || field.$submitted) && field.$valid) {
+                return 'has-success';
+            }
+            if ((field.$touched || field.$submitted) && field.$invalid) {
+                return 'has-error';
+            }
+        },
         fnpostEmail: function () {
             var vm = this;
-            vm.postEmail.email=vm.postPerInfor.email;
+            vm.postEmail.email = vm.postPerInfor.email;
+            if (vm.postEmail.email == "") {
+                alert("请填写邮箱");
+                return false;
+            }
+            var regex = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+            var email = vm.postEmail.email;
+            if (!regex.test(email)) {
+                alert("请填写正确邮箱");
+                return false;
+            }
             axio({
                 cmd: vm.postEmail,
                 success: function (res) {
                     var data = res.data;
                     if (data.err == 0) {
-                        vm.umailvflg=2;
+                        vm.umailvflg = 2;
                     } else {
                         alert(data.error)
                     }
@@ -100,20 +127,46 @@ var postVm = new vue({
                 }
             })
         },
-        fnpostPerInfor: function () {
+        onSubmit: function () {
+            console.log(this.postPerInfor.province)
             var vm = this;
-            // for(var i=0;i<vm.postPerInfor.length;i++){
-            //     if(vm.postPerInfor[i] == ""){
-            //         vm.isClick = 2;
-            //         return false;
-            //     }
-            // }
+            if (this.formstate.$invalid) {
+                alert("请正确填写信息");
+                return false;
+            }
+            if (vm.umailvflg != 2) {
+                alert("请先验证您的邮箱");
+                return false;
+            }
+            if (vm.ustate == 4) {
+                alert("您的信息已通过验证");
+                return false;
+            }
+            if (vm.ustate == 2) {
+                alert("您的信息已经提交审核，请勿重复提交");
+                return false;
+            }
+            if ($("#province").val() == "") {
+                alert("请选择公司地址");
+                return false;
+            }
+            if ($("#city").val() == "") {
+                alert("请选择公司地址");
+                return false;
+            }
+            if ($("#district").val() == "") {
+                if ($("#district").children().length > 1) {
+                    alert("请选择公司地址");
+                    return false;
+                }
+            }
             axio({
                 cmd: vm.postPerInfor,
                 success: function (res) {
                     var data = res.data;
                     if (data.err == 0) {
-                        vm.isClick = 1;
+                        vm.ustate = 2;
+                        alert("信息提交成功");
                     } else {
                         alert(data.error)
                     }
@@ -124,4 +177,11 @@ var postVm = new vue({
             })
         }
     }
-})
+});
+
+setTimeout(function () {
+    require("./../../lib/distpicker.data");
+    $('#distpicker').distpicker({
+        autoSelect: false
+    });
+}, 1000); 

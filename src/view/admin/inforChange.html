@@ -52,105 +52,130 @@
                     </dl>
                     <dl>
                         <dt><i class="side_ico ico_mes"></i>站内消息</dt>
-                        <dd><a href="unmessage.html">未读消息</a></dd>
-                        <dd><a href="#">全部消息</a></dd>
-                        <dd><a href="#">已读消息</a></dd>
-                        <dd><a href="#">我的留言</a></dd>
+                        <dd><a href="unmessage.html">消息中心</a></dd>
+                        <dd><a href="mymessage.html">我的留言</a></dd>
                     </dl>
                 </div>
                 <div class="col-xs-9 col-md-10">
                     <div class="side_right">
                         <h4 class="side_right_title">信息修改</h4>
                         <form class="form-horizontal" id="postPerInfor">
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-md-3 control-label"><i class="infor_ico infor_company"></i>公司名称</label>
-                                <div class="col-md-7">
-                                    <input class="form-control" placeholder="请输入公司名称" v-model="postPerInfor.company">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"><i class="infor_ico infor_code"></i>信用代码</label>
-                                <div class="col-md-7">
-                                    <input class="form-control" placeholder="请输入社会信用代码/税号" v-model="postPerInfor.usccode">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"><i class="infor_ico infor_address"></i>公司地址</label>
-                                <div class="col-md-7 form-inline">
-                                    <div id="distpicker">
-                                        <div class="col-md-4">
-                                            <label class="sr-only" for="province">Province</label>
-                                            <select class="form-control" id="province"></select>
+                            <vue-form :state="formstate" v-model="formstate" @submit.prevent="onSubmit">
+                                <validate auto-label class="form-group required-field" :class="fieldClassName(formstate.name)">
+                                    <label class="col-md-3 control-label"><i class="infor_ico infor_company"></i>公司名称</label>
+                                    <div class="col-md-7">
+                                        <input type="text" name="name" class="form-control" placeholder="请输入公司名称" required v-model.lazy="postPerInfor.company">
+                                        <field-messages name="name" show="$touched || $submitted" class="form-control-feedback">
+                                            <div>公司名称正确</div>
+                                            <div slot="required">公司名称不能为空</div>
+                                        </field-messages>
+                                    </div>
+                                </validate>
+                                <validate auto-label class="form-group required-field" :class="fieldClassName(formstate.usccode)">
+                                    <label class="col-md-3 control-label"><i class="infor_ico infor_code"></i>信用代码</label>
+                                    <div class="col-md-7">
+                                        <input type="text" name="usccode" placeholder="请输入社会信用代码/税号" class="form-control" required pattern="^\d{18}$" v-model.lazy="postPerInfor.usccode">
+                                        <field-messages name="usccode" show="$touched || $submitted" class="form-control-feedback">
+                                            <div>信用代码正确</div>
+                                            <div slot="required">信用代码不能为空</div>
+                                            <div slot="pattern">信用代码为18位</div>
+                                        </field-messages>
+                                    </div>
+                                </validate>
+                                <div class="form-group required-field">
+                                    <label class="col-md-3 control-label"><i class="infor_ico infor_address"></i>公司地址</label>
+                                    <div class="col-md-7 form-inline">
+                                        <div id="distpicker">
+                                            <div class="col-md-4">
+                                                <select class="form-control" id="province" v-model="postPerInfor.province" v-if="ustate == 1">
+                                                    <option value="" data-code="">—— 省 ——</option>
+                                                </select>
+                                                <input type="text" class="form-control" v-model="postPerInfor.province" v-else>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select class="form-control" id="city" v-model="postPerInfor.city" v-if="ustate == 1">
+                                                    <option value="" data-code="">—— 市 ——</option>
+                                                </select>
+                                                <input type="text" class="form-control" v-model="postPerInfor.city" v-else>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select class="form-control" id="district" v-model="postPerInfor.district" v-if="ustate == 1">
+                                                    <option value="" data-code="">—— 区 ——</option>
+                                                </select>
+                                                <input type="text" class="form-control" v-model="postPerInfor.district" v-else>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label class="sr-only" for="city">City</label>
-                                            <select class="form-control" id="city"></select>
+                                    </div>
+                                </div>
+                                <validate auto-label class="form-group required-field" :class="fieldClassName(formstate.address)">
+                                    <div class="col-md-3 control-label"></div>
+                                    <div class="col-md-7">
+                                        <input type="text" name="address" class="form-control" placeholder="请输入公司地址" required v-model.lazy="postPerInfor.address">
+                                        <field-messages name="address" show="$touched || $submitted" class="form-control-feedback">
+                                            <div>公司名称正确</div>
+                                            <div slot="required">公司名称不能为空</div>
+                                        </field-messages>
+                                    </div>
+                                </validate>
+                                <validate auto-label class="form-group required-field" :class="fieldClassName(formstate.email)">
+                                    <label class="col-md-3 control-label"><i class="infor_ico infor_email"></i>注册邮箱</label>
+                                    <div class="col-md-7 infor_email_div" v-if="umailvflg != 2">
+                                        <input type="email" name="email" class="form-control" required placeholder="请输入注册邮箱" v-model.lazy="postPerInfor.email">
+                                        <button type="button" class="btn btn-primary" @click="fnpostEmail">点击验证</button>
+                                        <field-messages auto-label name="email" show="$touched || $submitted" class="form-control-feedback">
+                                            <div>注册邮箱正确</div>
+                                            <div slot="required">注册邮箱不能为空</div>
+                                            <div slot="email">注册邮箱格式不正确</div>
+                                        </field-messages>
+                                    </div>
+                                    <div class="col-md-7" v-else>
+                                        <input type="email" name="email" class="form-control" required placeholder="请输入注册邮箱" v-model.lazy="postPerInfor.email">
+                                        <field-messages auto-label name="email" show="$touched || $submitted" class="form-control-feedback">
+                                            <div>注册邮箱正确</div>
+                                            <div slot="required">注册邮箱不能为空</div>
+                                            <div slot="email">注册邮箱格式不正确</div>
+                                        </field-messages>
+                                    </div>
+                                </validate>
+                                <validate auto-label class="form-group required-field" :class="fieldClassName(formstate.phone)">
+                                    <label class="col-md-3 control-label"><i class="infor_ico infor_call"></i>移动电话</label>
+
+                                    <div class="col-md-7">
+                                        <input type="tel" name="phone" placeholder="请输入移动电话" class="form-control" required pattern="^1[34578]\d{9}$" v-model.lazy="postPerInfor.phone">
+                                        <field-messages name="phone" show="$touched || $submitted" class="form-control-feedback">
+                                            <div>移动电话正确</div>
+                                            <div slot="required">移动电话不能为空</div>
+                                            <div slot="pattern">移动电话格式不正确</div>
+                                        </field-messages>
+                                    </div>
+                                </validate>
+                                <validate auto-label class="form-group required-field" :class="fieldClassName(formstate.telphone)">
+                                    <label class="col-md-3 control-label"><i class="infor_ico infor_tele"></i>公司电话</label>
+                                    <div class="col-md-7">
+                                        <input type="tel" name="telphone" placeholder="请输入公司电话(xxx-xxxxxxxx)" class="form-control" required pattern="^\d{3}-\d{8}$"
+                                            v-model.lazy="postPerInfor.telphone">
+                                        <field-messages name="telphone" show="$touched || $submitted" class="form-control-feedback">
+                                            <div>公司电话正确</div>
+                                            <div slot="required">公司电话不能为空</div>
+                                            <div slot="pattern">公司电话格式不正确(xxx-xxxxxxxx)</div>
+                                        </field-messages>
+                                    </div>
+                                </validate>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label"></label>
+                                    <div class="col-md-7">
+                                        <button type="submit" class="btn btn-primary">提交审核</button>
+                                    </div>
+                                </div>
+                                <div class="form-group" v-if="ustate == 2">
+                                    <label class="col-md-3 control-label"></label>
+                                    <div class="col-md-7">
+                                        <div class="alert alert-warning text-center" role="alert">
+                                            您提供的公司资料已经提交审核，我们将在12小时内完成审核工作。<br> 感谢您使用BEECUBIC!
                                         </div>
-                                        <div class="col-md-4">
-                                            <label class="sr-only" for="district">District</label>
-                                            <select class="form-control" id="district"></select>
-                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"></label>
-                                <div class="col-md-7">
-                                    <input class="form-control" placeholder="请输入公司地址" v-model="postPerInfor.address">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"><i class="infor_ico infor_email"></i>注册邮箱</label>
-                                <div class="col-md-7 infor_email_div" v-if="umailvflg != 2">
-                                    <input class="form-control" placeholder="请输入注册邮箱" v-model="postPerInfor.email">
-                                    <button type="button" class="btn btn-primary" @click="fnpostEmail">点击验证</button>
-                                </div>
-                                <div class="col-md-7" v-else>
-                                    <input class="form-control" placeholder="请输入注册邮箱" v-model="postPerInfor.email">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"><i class="infor_ico infor_call"></i>移动电话</label>
-                                <div class="col-md-7">
-                                    <input class="form-control" placeholder="请输入移动电话" v-model="postPerInfor.phone">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"><i class="infor_ico infor_tele"></i>公司电话</label>
-                                <div class="col-md-7">
-                                    <input class="form-control" placeholder="请输入公司电话" v-model="postPerInfor.telphone">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"></label>
-                                <div class="col-md-7">
-                                    <button type="button" class="btn btn-primary" @click="fnpostPerInfor">提交审核</button>
-                                </div>
-                            </div>
-                            <div class="form-group" v-if="isClick == 1 || ustate == 2">
-                                <label class="col-md-3 control-label"></label>
-                                <div class="col-md-7">
-                                    <div class="alert alert-warning text-center" role="alert">
-                                        您提供的公司资料已经提交审核，我们将在12小时内完成审核工作。<br> 感谢您使用BEECUBIC!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" v-if="ustate == 4">
-                                <label class="col-md-3 control-label"></label>
-                                <div class="col-md-7">
-                                    <div class="alert alert-warning text-center" role="alert">
-                                        您的信息已通过验证，请不要重复验证。<br> 感谢您使用BEECUBIC!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" v-if="umailvflg != 2">
-                                <label class="col-md-3 control-label"></label>
-                                <div class="col-md-7">
-                                    <div class="alert alert-warning text-center" role="alert">
-                                        您的邮箱未通过验证，请先认证邮箱后继续验证信息。<br> 感谢您使用BEECUBIC!
-                                    </div>
-                                </div>
-                            </div>
+                            </vue-form>
                         </form>
                     </div>
                 </div>
@@ -191,6 +216,29 @@
             position: absolute;
             right: 15px;
             top: 0px;
+        }
+
+        .required-field label::after {
+            content: '*';
+            color: red;
+            margin-left: 0.25rem;
+        }
+
+        .form-control-feedback {
+            position: initial;
+            width: initial;
+            height: initial;
+            line-height: 24px;
+            margin-top: 4px;
+            text-align: left;
+        }
+
+        .has-error .control-label {
+            color: #333333;
+        }
+
+        .has-success .control-label {
+            color: #333333;
         }
     </style>
 </body>

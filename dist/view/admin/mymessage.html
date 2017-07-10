@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的留言</title>
+<link href="/dist/css/public.css?b81f331b2a6408546efa" rel="stylesheet"></head>
+
+<body>
+    <div id="pgHead"></div>
+    <main class="content">
+        <!--面包屑导航-->
+        <nav class="navbar navbar-default nav-height">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3 col-md-2">
+                        <h3 class="text-right nav-title">账户中心</h3>
+                    </div>
+                    <div class="col-xs-9 col-md-10">
+                        <ol class="breadcrumb">
+                            <li>Home</li>
+                            <li>站内消息</li>
+                            <li>我的留言</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <!--边栏-->
+                <div class="col-xs-3 col-md-2 text-right side_left">
+                    <dl>
+                        <dt><i class="side_ico ico_log"></i>注册资料</dt>
+                        <dd><a href="infor.html">公司信息</a></dd>
+                        <dd><a href="inforChange.html">信息修改</a></dd>
+                    </dl>
+                    <dl>
+                        <dt><i class="side_ico ico_count"></i>资金账户</dt>
+                        <dd><a href="recharge.html">充值记录</a></dd>
+                        <dd><a href="#">账户充值</a></dd>
+                    </dl>
+                    <dl>
+                        <dt><i class="side_ico ico_record"></i>交易记录</dt>
+                        <dd><a href="#">订单管理</a></dd>
+                    </dl>
+                    <dl>
+                        <dt><i class="side_ico ico_fav"></i>方案收藏</dt>
+                        <dd><a href="collect.html">收藏管理</a></dd>
+                    </dl>
+                    <dl>
+                        <dt><i class="side_ico ico_mes"></i>站内消息</dt>
+                        <dd><a href="unmessage.html">消息中心</a></dd>
+                        <dd><a href="mymessage.html" class="active">我的留言</a></dd>
+                    </dl>
+                </div>
+                <div class="col-xs-9 col-md-10">
+                    <div class="side_right" id="mymessage">
+                        <h4 class="side_right_title">消息中心</h4>
+                        <div class="form-group">
+                            <template v-if="notelist != ''">
+                                <template v-for="note in notelist">
+
+                                    <div class="mymessagemy" v-if="note.ntype==0">
+                                        <img src="/dist/./img/260be7f26895e29ba9d44d192fbc743e.png">
+                                        <p>
+                                            <span>发表于 {{note.time}}</span><br> {{note.note}}
+                                        </p>
+                                    </div>
+                                    <div class="mymessageanswer" v-else>
+                                        <img src="/dist/./img/260be7f26895e29ba9d44d192fbc743e.png">
+                                        <p>
+                                            <span>发表于 {{note.time}}</span><br> {{note.note}}
+                                        </p>
+                                    </div>
+
+                                </template>
+                            </template>
+                            <div class="form-group" v-else>
+                                <p>如有任何疑问，欢迎留言，我们将在第一时间给您答复，谢谢！</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="7" style="resize:none;" v-model.trim="postMessage.note"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" @click="fnpostMessage">提交留言</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div id="pgFoot"></div>
+<script type="text/javascript" src="/dist/js/public.js?b81f331b2a6408546efa"></script><script type="text/javascript" src="/dist/js/mymessage.js?b81f331b2a6408546efa"></script><script type="text/javascript" src="/dist/js/vendor.js?b81f331b2a6408546efa"></script></body>
+
+</html>

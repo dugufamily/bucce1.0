@@ -8,10 +8,13 @@ const node_dir = path.join(__dirname, './node_modules/');
 module.exports = {
     entry:{
         login: './src/js/page/login.js',
+        password: './src/js/page/password.js',
         index: './src/js/page/index.js',
         email: './src/js/page/email.js',
         inforchange: './src/js/page/admin/inforchange.js',
         infor: './src/js/page/admin/infor.js',
+        unmessage:'./src/js/page/admin/unmessage.js',
+        mymessage:'./src/js/page/admin/mymessage.js',
         vendor: ['jquery','bootstrap','vue','store'] 
     },
     output:{
@@ -59,7 +62,8 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'public',
-            chunks: ['login','index','inforchange','infor'],
+            // 需要提取的放 不需要的不放 比如 password
+            chunks: ['login','index','inforchange','infor','unmessage','mymessage'],
             minChunks: 2
         }),  
         new HtmlWebpackPlugin({ 
@@ -73,6 +77,18 @@ module.exports = {
             //     collapseWhitespace: false 
             // },    
             chunks: ['public', 'login','vendor'] 
+        }), 
+        new HtmlWebpackPlugin({ 
+            //favicon: './src/img/favicon.ico', 
+            filename: './view/password.html', 
+            template: './src/view/password.html', 
+            inject: true, 
+            hash: true, 
+            // minify: { 
+            //     removeComments: true, 
+            //     collapseWhitespace: false 
+            // },    
+            chunks: ['public','password','vendor'] 
         }), 
         new HtmlWebpackPlugin({ 
             //favicon: './src/img/favicon.ico', 
@@ -121,7 +137,31 @@ module.exports = {
             //     collapseWhitespace: false 
             // },    
             chunks: ['public', 'infor','vendor'] 
-        })                            
+        }),
+        new HtmlWebpackPlugin({ 
+            //favicon: './src/img/favicon.ico', 
+            filename: './view/admin/unmessage.html', 
+            template: './src/view/admin/unmessage.html', 
+            inject: true, 
+            hash: true, 
+            // minify: { 
+            //     removeComments: true, 
+            //     collapseWhitespace: false 
+            // },    
+            chunks: ['public', 'unmessage','vendor'] 
+        }),
+        new HtmlWebpackPlugin({ 
+            //favicon: './src/img/favicon.ico', 
+            filename: './view/admin/mymessage.html', 
+            template: './src/view/admin/mymessage.html', 
+            inject: true, 
+            hash: true, 
+            // minify: { 
+            //     removeComments: true, 
+            //     collapseWhitespace: false 
+            // },    
+            chunks: ['public', 'mymessage','vendor'] 
+        })                                     
     ],
     resolve: {
         alias: {

@@ -32,6 +32,7 @@
                             <input type="password" placeholder="请输入密码" class="form-control" v-model="log.pwd" ref="logpwd" @keyup.enter="fnlog($event)">
                         </div>
                     </div>
+                    <a href="./password.html" class="pull-right forgetPass">忘记密码</a>
                     <div class="form-group">
                         <button type="button" class="btn btn-primary form-control" @click="fnlog($event)">登录 </button>
                     </div>
@@ -40,19 +41,19 @@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" placeholder="请输入用户名" class="form-control" v-model="reg.uname" ref="reguname">
+                            <input type="text" placeholder="请输入用户名" class="form-control" v-model.trim="reg.uname" ref="reguname">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input type="password" placeholder="请输入密码" class="form-control" v-model="reg.pwd" ref="regpwd" >
+                            <input type="password" placeholder="请输入密码" class="form-control" v-model.trim="reg.pwd" ref="regpwd" >
                         </div>
                     </div>
                     <div class="form-group send_code">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                            <input type="text" placeholder="请输入手机号" class="form-control" v-model="reg.phone" ref="regphone">
+                            <input type="text" placeholder="请输入手机号" class="form-control" v-model.trim="sendcode.phone" ref="regphone">
                         </div>
 
                         <button type="button" class="btn btn-default" @click="fnchkcode">获取验证码</button>
@@ -60,7 +61,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            <input type="text" placeholder="请输入验证码" class="form-control"  v-model="reg.verycode" ref="regverycode">
+                            <input type="text" placeholder="请输入验证码" class="form-control"  v-model.trim="reg.verycode" ref="regverycode">
                         </div>
                     </div>
                     <div class="form-group">
